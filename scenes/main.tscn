@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu4ss2kujkox4"]
+
+[ext_resource type="Material" uid="uid://dlgg036n4i86k" path="res://materials/standardMaterial_floor.tres" id="1_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://da3445xjqoq2k" path="res://scenes/player.tscn" id="2_sugp2"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_60t4w"]
+material = ExtResource("1_0wfyh")
+size = Vector2(40, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xits5"]
+size = Vector3(20, 1, 20)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, -2.71677e-09, 6.52248e-10, 0, 0.233449, 0.972369, -2.79397e-09, -0.972369, 0.233449, 0, 37, 11.5)
+fov = 59.16
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("QuadMesh_60t4w")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+shape = SubResource("BoxShape3D_xits5")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.965926, 0.183013, -0.183013, 1.49012e-08, 0.707107, 0.707107, 0.258819, 0.683013, -0.683013, 0, 9, 0)
+
+[node name="Player" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Turret" parent="Player" instance=ExtResource("2_sugp2")]
